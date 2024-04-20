@@ -18,6 +18,7 @@ export default defineConfig({
       },
     },
   },
+  base: process.env.NODE_ENV === 'production' ? './' : '/',
   build: {
     sourcemap: false,
     chunkSizeWarningLimit: 1000, // 单位 kb
