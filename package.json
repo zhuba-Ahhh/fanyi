@@ -13,6 +13,7 @@
     "lint": "eslint --cache ./src"
   },
   "dependencies": {
+    "antd": "^5.16.2",
     "axios": "^1.6.8",
     "crypto-js": "^4.2.0",
     "qs": "^6.12.1",

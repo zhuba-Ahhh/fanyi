@@ -3,6 +3,7 @@ import { StrictMode } from 'react';
 
 import './index.css';
 import 'tailwindcss/tailwind.css';
+import 'antd/dist/antd.min.css';
 
 import App from './App';
 
