@@ -54,7 +54,7 @@ const App = () => {
   );
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen mt-4">
+    <div className="flex flex-col items-center justify-center h-screen">
       <div className="flex items-center justify-center w-full max-w-800 mx-auto space-x-6 pt-1/3">
         <Input
           className="flex-grow"
