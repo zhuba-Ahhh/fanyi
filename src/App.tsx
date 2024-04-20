@@ -8,8 +8,18 @@ function App() {
   return (
     <>
       <img src={FaviconSVG} className="logo" alt="Vite logo" height={100} width={100} />
-      <Button onClick={() => translate({ query: 'Hello' })}>Hello</Button>
-      {/* {setStr} */}
+      <Button
+        onClick={() => {
+          translate({ query: 'Hello' }).then((res) => {
+            if (!!res) {
+              setStr(res.translation[0]);
+            }
+          });
+        }}
+      >
+        translate
+      </Button>
+      {str}
     </>
   );
 }
