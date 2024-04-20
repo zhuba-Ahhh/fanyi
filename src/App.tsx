@@ -4,11 +4,11 @@ import translate from './utils/translate';
 import { useState } from 'react';
 
 function App() {
-  const [str, setStr] = useState("")
+  const [str, setStr] = useState('');
   return (
     <>
       <img src={FaviconSVG} className="logo" alt="Vite logo" height={100} width={100} />
-      <Button onClick={() => translate('Hello')}>Hello</Button>
+      <Button onClick={() => translate({ query: 'Hello' })}>Hello</Button>
       {/* {setStr} */}
     </>
   );
