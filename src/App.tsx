@@ -40,7 +40,7 @@ const App = () => {
       <div className="flex flex-col items-start justify-center mt-4">
         {webs.map((web, index) => (
           <div key={web.key + uuid(index)} className="text-left mt-2">
-            {web.key}：{web.value}
+            {web.key}：{web.value.join("、")}
           </div>
         ))}
       </div>
