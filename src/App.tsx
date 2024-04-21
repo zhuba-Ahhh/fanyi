@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { Button, Input, Select } from 'antd';
+import { Button, Input, Select, Tooltip } from 'antd';
 import { translate, uuid, Web, Basic } from './utils';
 
 const App = () => {
@@ -40,7 +40,7 @@ const App = () => {
       <div className="flex flex-col items-start justify-center mt-4">
         {webs.map((web, index) => (
           <div key={web.key + uuid(index)} className="text-left mt-2">
-            {web.key}：{web.value.join("、")}
+            {web.key}：{web.value.join('、')}
           </div>
         ))}
       </div>
@@ -62,16 +62,19 @@ const App = () => {
           onChange={(e) => setQuery(e.target.value)}
           style={{ maxWidth: '600px' }}
         />
-        <Select
-          defaultValue="en"
-          style={{ width: 120 }}
-          onChange={setTo}
-          options={[
-            { value: 'zh-CHS', label: '简体中文' },
-            { value: 'zh-CHT', label: '繁体中文' },
-            { value: 'en', label: '英文' },
-          ]}
-        />
+        <Tooltip title={'目标语言'}>
+          <Select
+            defaultValue={'en'}
+            title={'目标语言'}
+            style={{ width: 120 }}
+            onChange={setTo}
+            options={[
+              { value: 'zh-CHS', label: '简体中文' },
+              { value: 'zh-CHT', label: '繁体中文' },
+              { value: 'en', label: '英文' },
+            ]}
+          />
+        </Tooltip>
         <Button onClick={onClick} type="primary">
           translate
         </Button>
