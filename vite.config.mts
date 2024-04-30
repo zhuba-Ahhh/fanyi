@@ -5,6 +5,8 @@ import svgrPlugin from 'vite-plugin-svgr';
 import { visualizer } from 'rollup-plugin-visualizer';
 import viteImagemin from 'vite-plugin-imagemin';
 import importToCDN, { autoComplete } from 'vite-plugin-cdn-import';
+import Unocss from 'unocss/vite';
+import uncossConfig from './unocss.config';
 
 // https://vitejs.dev/config/
 // eslint-disable-next-line import/no-unused-modules
@@ -15,6 +17,7 @@ export default defineConfig({
     tsconfigPaths(),
     svgrPlugin(),
     visualizer(),
+    Unocss(uncossConfig),
     importToCDN({
       modules: [autoComplete('react'), autoComplete('react-dom'), autoComplete('axios')],
     }),
@@ -61,7 +64,6 @@ export default defineConfig({
       },
     },
   },
-  base: process.env.NODE_ENV === 'production' ? './' : '/',
   build: {
     sourcemap: false,
     chunkSizeWarningLimit: 1000, // 单位 kb

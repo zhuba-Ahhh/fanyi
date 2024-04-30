@@ -55,7 +55,7 @@ export const YouDao = () => {
 
   return (
     <>
-      <div className="flex items-center justify-center w-full max-w-800 mx-auto space-x-6 pt-1/3">
+      <div className="flex items-center justify-center w-full max-w-800 mx-auto space-x-6">
         <Input
           className="flex-grow"
           value={query}

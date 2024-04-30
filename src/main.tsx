@@ -2,7 +2,7 @@ import { createRoot } from 'react-dom/client';
 import { StrictMode } from 'react';
 
 import './index.css';
-import 'tailwindcss/tailwind.css';
+import 'uno.css';
 
 import App from './App';
 
