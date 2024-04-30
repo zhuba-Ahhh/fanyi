@@ -1,6 +1,6 @@
-import axios from 'axios';
 import CryptoJS from 'crypto-js';
-import qs from 'qs'; // 用于序列化表单数据
+import qs from 'qs';
+import api from '../api'; // 用于序列化表单数据
 
 export interface translateParameter {
   query: string;
@@ -23,7 +23,7 @@ export interface translateParameter {
 // speakUrl	text	源语言发音地址	翻译成功一定存在，需要应用绑定语音合成服务才能正常播放 否则返回110错误码
 // returnPhrase	Array	单词校验后的结果	主要校验字母大小写、单词前含符号、中文简繁体
 
-export interface translateRetrunValue {
+export interface translateReturnValue {
   returnPhrase: string[];
   query: string;
   errorCode: string;
@@ -84,7 +84,7 @@ export async function translate({
   key = 'UHN5hjnYK5QYWEyQhzBPDsukxnVeLJ6P',
   appKey = '60e4479f20e0a4d4',
   vocabId = '用户词表ID',
-}: Partial<translateParameter>): Promise<translateRetrunValue | void> {
+}: Partial<translateParameter>): Promise<translateReturnValue | void> {
   const truncate = (q: string): string => {
     const len = q.length;
     return len <= 20 ? q : q.substring(0, 10) + len + q.substring(len - 10, len);
@@ -108,18 +108,13 @@ export async function translate({
   };
 
   try {
-    const response = await axios.post('/api', qs.stringify(formData), {
+    const response = await api.post('/api', qs.stringify(formData), {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded', // 设置请求头
       },
     });
 
-    if (response.data.errorCode === '0') {
-      // console.log('翻译成功：', response.data);
-      return response.data;
-    } else {
-      console.error('翻译出错，错误码：', response.data.errorCode);
-    }
+    return response;
   } catch (error) {
     console.error('翻译出错:', error);
   }

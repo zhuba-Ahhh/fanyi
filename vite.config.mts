@@ -19,7 +19,21 @@ export default defineConfig({
     visualizer(),
     Unocss(uncossConfig),
     importToCDN({
-      modules: [autoComplete('react'), autoComplete('react-dom'), autoComplete('axios')],
+      modules: [
+        autoComplete('react'),
+        autoComplete('react-dom'),
+        autoComplete('axios'),
+        {
+          name: 'crypto-js',
+          var: 'CryptoJS',
+          path: 'https://cdn.bootcdn.net/ajax/libs/crypto-js/4.2.0/index.min.js',
+        },
+        {
+          name: 'qs',
+          var: 'qs',
+          path: 'https://cdn.bootcdn.net/ajax/libs/qs/6.11.2/qs.min.js',
+        },
+      ],
     }),
     viteImagemin({
       gifsicle: {
@@ -77,7 +91,7 @@ export default defineConfig({
         entryFileNames: 'js/[name]-[hash].js', // 包的入口文件名称
         assetFileNames: '[ext]/[name]-[hash].[ext]', // 资源文件像 字体，图片等
       },
-      external: ['react', 'react-dom', 'axios'],
+      external: ['react', 'react-dom', 'axios', 'crypto-js', 'qs'],
       treeshake: {
         preset: 'recommended',
         manualPureFunctions: ['console.log'],
