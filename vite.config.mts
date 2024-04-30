@@ -4,6 +4,7 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 import svgrPlugin from 'vite-plugin-svgr';
 import { visualizer } from 'rollup-plugin-visualizer';
 import viteImagemin from 'vite-plugin-imagemin';
+import importToCDN, { autoComplete } from 'vite-plugin-cdn-import';
 
 // https://vitejs.dev/config/
 // eslint-disable-next-line import/no-unused-modules
@@ -14,6 +15,9 @@ export default defineConfig({
     tsconfigPaths(),
     svgrPlugin(),
     visualizer(),
+    importToCDN({
+      modules: [autoComplete('react'), autoComplete('react-dom'), autoComplete('axios')],
+    }),
     viteImagemin({
       gifsicle: {
         // gif图片压缩
@@ -64,13 +68,13 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          'react-vendor': ['react', 'react-dom'],
           library: ['antd'],
         },
         chunkFileNames: 'js/[name]-[hash].js', // 引入文件名的名称
         entryFileNames: 'js/[name]-[hash].js', // 包的入口文件名称
         assetFileNames: '[ext]/[name]-[hash].[ext]', // 资源文件像 字体，图片等
       },
+      external: ['react', 'react-dom', 'axios'],
       treeshake: {
         preset: 'recommended',
         manualPureFunctions: ['console.log'],
